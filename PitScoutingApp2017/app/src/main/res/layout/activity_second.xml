@@ -180,6 +180,17 @@
         android:layout_row="7"
         android:layout_column="1"/>
 
+    <Button
+        android:id="@+id/takePhoto"
+        android:text="Photo"
+        android:textAllCaps="false"
+        android:onClick="toPhoto"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textSize="20sp"
+        android:layout_row="7"
+        android:layout_column="3"/>
+
     <ToggleButton
         android:id="@+id/rope"
         android:layout_width="120dp"

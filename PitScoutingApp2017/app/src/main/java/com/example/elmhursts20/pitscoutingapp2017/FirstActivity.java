@@ -14,10 +14,11 @@ public class FirstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
     }
+
     public void nextButton(View view) {
-        EditText event = (EditText)findViewById(R.id.eventName);
-        EditText scout = (EditText)findViewById(R.id.scoutName);
-        EditText team = (EditText)findViewById(R.id.teamNumber);
+        EditText event = (EditText) findViewById(R.id.eventName);
+        EditText scout = (EditText) findViewById(R.id.scoutName);
+        EditText team = (EditText) findViewById(R.id.teamNumber);
         if (event.getText().toString().equals("") || scout.getText().toString().equals("") || Integer.parseInt(team.getText().toString()) == 0) {
             Toast.makeText(getApplicationContext(), "Type all fields in", Toast.LENGTH_LONG).show();
         } else {

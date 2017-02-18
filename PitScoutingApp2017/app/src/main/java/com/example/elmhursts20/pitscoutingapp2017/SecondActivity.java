@@ -20,6 +20,10 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
     }
+    public void toPhoto(View view) {
+        Intent intent = new Intent(this, PhotoActivity.class);
+        startActivity(intent);
+    }
     public void submit(View view) {
         EditText ballCap = (EditText) findViewById(R.id.ballCapacity);
         ToggleButton footprint = (ToggleButton) findViewById(R.id.footPrint);

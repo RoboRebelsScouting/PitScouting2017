@@ -40,7 +40,7 @@ public class InfoStorage {
     }
 
     private String scout;
-    private int team;
+    public int team;
     private String event;
     public Frame frame;
     public Shooting shooting;
