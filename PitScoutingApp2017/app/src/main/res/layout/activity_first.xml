@@ -43,6 +43,7 @@
     <EditText
         android:id="@+id/scoutName"
         android:inputType="textPersonName"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:textSize="20sp"
@@ -51,6 +52,7 @@
     <EditText
         android:id="@+id/eventName"
         android:inputType="textPersonName"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:textSize="20sp"
