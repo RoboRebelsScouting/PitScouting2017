@@ -25,8 +25,7 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     public void backToSecond(View view) {
-        Intent intent = new Intent(this, SecondActivity.class);
-        startActivity(intent);
+        this.finish();
     }
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
