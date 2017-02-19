@@ -26,6 +26,7 @@ public class SecondActivity extends AppCompatActivity {
     }
     public void submit(View view) {
         EditText ballCap = (EditText) findViewById(R.id.ballCapacity);
+        EditText ropeMaterial = (EditText) findViewById(R.id.rope);
         ToggleButton footprint = (ToggleButton) findViewById(R.id.footPrint);
         ToggleButton shootLow = (ToggleButton) findViewById(R.id.shootLow);
         ToggleButton shootHigh = (ToggleButton) findViewById(R.id.shootHigh);
@@ -35,48 +36,53 @@ public class SecondActivity extends AppCompatActivity {
         ToggleButton gearGround = (ToggleButton) findViewById(R.id.groundGear);
         ToggleButton ballPlayer = (ToggleButton) findViewById(R.id.playerBall);
         ToggleButton ballGround = (ToggleButton) findViewById(R.id.groundBall);
+        ToggleButton canClimb = (ToggleButton) findViewById(R.id.canClimb);
 
         if (ballCap.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Type in the ball capacity", Toast.LENGTH_LONG).show();
-        }
+        } else if (ropeMaterial.getText().toString().equals("")) {
+            Toast.makeText(getApplicationContext(), "Type in the rope material", Toast.LENGTH_LONG).show();
+        } else {
 
-        Main.infoStorage.ballCapacity = Integer.parseInt(ballCap.getText().toString());
-        Main.infoStorage.tallFrame = footprint.isChecked();
-        if (shootLow.isChecked() && shootHigh.isChecked()) {
-            Main.infoStorage.shooting = InfoStorage.Shooting.both;
-        } else if (shootLow.isChecked()) {
-            Main.infoStorage.shooting = InfoStorage.Shooting.low;
-        } else if (shootHigh.isChecked()) {
-            Main.infoStorage.shooting = InfoStorage.Shooting.high;
-        } else {
-            Main.infoStorage.shooting = InfoStorage.Shooting.none;
+            Main.infoStorage.ballCapacity = Integer.parseInt(ballCap.getText().toString());
+            Main.infoStorage.tallFrame = footprint.isChecked();
+            Main.infoStorage.climb = canClimb.isChecked();
+            if (shootLow.isChecked() && shootHigh.isChecked()) {
+                Main.infoStorage.shooting = InfoStorage.Shooting.both;
+            } else if (shootLow.isChecked()) {
+                Main.infoStorage.shooting = InfoStorage.Shooting.low;
+            } else if (shootHigh.isChecked()) {
+                Main.infoStorage.shooting = InfoStorage.Shooting.high;
+            } else {
+                Main.infoStorage.shooting = InfoStorage.Shooting.none;
+            }
+            if (frameSteel.isChecked()) {
+                Main.infoStorage.frame = InfoStorage.Frame.steel;
+            } else if (frameAluminum.isChecked()) {
+                Main.infoStorage.frame = InfoStorage.Frame.aluminum;
+            } else {
+                Main.infoStorage.frame = InfoStorage.Frame.wood;
+            }
+            if (ballPlayer.isChecked() && ballGround.isChecked()) {
+                Main.infoStorage.ball = InfoStorage.Ball.both;
+            } else if (ballPlayer.isChecked()) {
+                Main.infoStorage.ball = InfoStorage.Ball.player;
+            } else if (ballGround.isChecked()) {
+                Main.infoStorage.ball = InfoStorage.Ball.ground;
+            } else {
+                Main.infoStorage.ball = InfoStorage.Ball.neither;
+            }
+            if (gearPlayer.isChecked() && gearGround.isChecked()) {
+                Main.infoStorage.gear = InfoStorage.Gear.both;
+            } else if (gearPlayer.isChecked()) {
+                Main.infoStorage.gear = InfoStorage.Gear.player;
+            } else if (gearGround.isChecked()) {
+                Main.infoStorage.gear = InfoStorage.Gear.ground;
+            } else {
+                Main.infoStorage.gear = InfoStorage.Gear.neither;
+            }
+            Main.infoStorage.csvCreate(this);
         }
-        if (frameSteel.isChecked()) {
-            Main.infoStorage.frame = InfoStorage.Frame.steel;
-        } else if (frameAluminum.isChecked()) {
-            Main.infoStorage.frame = InfoStorage.Frame.aluminum;
-        } else {
-            Main.infoStorage.frame = InfoStorage.Frame.wood;
-        }
-        if (ballPlayer.isChecked() && ballGround.isChecked()) {
-            Main.infoStorage.ball = InfoStorage.Ball.both;
-        } else if (ballPlayer.isChecked()) {
-            Main.infoStorage.ball = InfoStorage.Ball.player;
-        } else if (ballGround.isChecked()) {
-            Main.infoStorage.ball = InfoStorage.Ball.ground;
-        } else {
-            Main.infoStorage.ball = InfoStorage.Ball.neither;
-        }
-        if (gearPlayer.isChecked() && gearGround.isChecked()) {
-            Main.infoStorage.gear = InfoStorage.Gear.both;
-        } else if (gearPlayer.isChecked()) {
-            Main.infoStorage.gear = InfoStorage.Gear.player;
-        } else if (gearGround.isChecked()) {
-            Main.infoStorage.gear = InfoStorage.Gear.ground;
-        } else {
-            Main.infoStorage.gear = InfoStorage.Gear.neither;
-        }
-        Main.infoStorage.csvCreate(this);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

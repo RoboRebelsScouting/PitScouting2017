@@ -42,15 +42,20 @@ public class InfoStorage {
     private String scout;
     public int team;
     private String event;
+    public boolean climb;
     public Frame frame;
     public Shooting shooting;
     public Ball ball;
     public Gear gear;
-    public boolean customRope;
+    public String ropeMaterial;
     public int ballCapacity;
     public boolean tallFrame;
 
     public InfoStorage() {
+        scout = "";
+        team = 0;
+        event = "";
+        frame = null;
     }
 
     public File getAlbumStorageDir(String albumName) {
@@ -68,7 +73,7 @@ public class InfoStorage {
     }
 
     public void csvCreate(Activity theActivity) {
-        String fileName= this.event + "," + this.team + "," + this.scout + ".csv";
+        String fileName= this.event + "-" + this.team + "-" + this.scout + "-pit.csv";
 
         File directory = getAlbumStorageDir("/FRC2017");
         File file = new File(directory,fileName);
@@ -76,7 +81,7 @@ public class InfoStorage {
             FileWriter writer = new FileWriter(file);
             writer.write(this.event + "," + this.team + "," + this.scout + "," + this.ballCapacity + ","
                     + this.tallFrame + "," + this.shooting.toString() + "," + this.gear.toString()
-                    + "," + this.ball.toString() + "," + this.customRope + "," + this.frame.toString() + "\n");
+                    + "," + this.ball.toString() + "," + this.ropeMaterial + "," + this.frame.toString() + this.climb);
             writer.close();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);

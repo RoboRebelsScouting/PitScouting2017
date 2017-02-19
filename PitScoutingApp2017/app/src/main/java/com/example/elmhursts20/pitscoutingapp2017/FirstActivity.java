@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -13,10 +16,36 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+
+        Main.infoStorage = new InfoStorage();
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
+        TextView eventNameText = (TextView) findViewById(R.id.eventName);
+
+        try {
+            long currentTimeInMillis = System.currentTimeMillis();
+
+            if ((currentTimeInMillis >= sdf.parse("Feb 17 2017").getTime()) &&
+                    (currentTimeInMillis < sdf.parse("Feb 19 2017").getTime() )) {
+                eventNameText.setText("Week_0");
+            } else if ((currentTimeInMillis >= sdf.parse("Mar 8 2017").getTime()) &&
+                    (currentTimeInMillis < sdf.parse("Mar 12 2017").getTime() )) {
+                eventNameText.setText("WPI");
+            } else if ((currentTimeInMillis >= sdf.parse("Mar 23 2017").getTime()) &&
+                    (currentTimeInMillis < sdf.parse("Mar 27 2017").getTime() )) {
+                eventNameText.setText("Bryant");
+            } else if ((currentTimeInMillis >= sdf.parse("Apr 4 2017").getTime()) &&
+                    (currentTimeInMillis < sdf.parse("Apr 9 2017").getTime() )) {
+                eventNameText.setText("NE_Champs");
+            }  else {
+                eventNameText.setText("Worlds");
+            }
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void nextButton(View view) {
-        EditText event = (EditText) findViewById(R.id.eventName);
+        TextView event = (TextView) findViewById(R.id.eventName);
         EditText scout = (EditText) findViewById(R.id.scoutName);
         EditText team = (EditText) findViewById(R.id.teamNumber);
         if (event.getText().toString().equals("") || scout.getText().toString().equals("") || Integer.parseInt(team.getText().toString()) == 0) {
