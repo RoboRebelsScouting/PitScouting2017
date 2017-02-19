@@ -41,7 +41,7 @@ public class SecondActivity extends AppCompatActivity {
         if (ballCap.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Type in the ball capacity", Toast.LENGTH_LONG).show();
         } else if (ropeMaterial.getText().toString().equals("")) {
-            Toast.makeText(getApplicationContext(), "Type in the rope material", Toast.LENGTH_LONG).show();
+            ropeMaterial.setText("Default");
         } else {
 
             Main.infoStorage.ballCapacity = Integer.parseInt(ballCap.getText().toString());
