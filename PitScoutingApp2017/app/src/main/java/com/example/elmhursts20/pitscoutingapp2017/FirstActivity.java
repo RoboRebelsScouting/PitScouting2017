@@ -21,6 +21,9 @@ public class FirstActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
         TextView eventNameText = (TextView) findViewById(R.id.eventName);
 
+        getActionBar().setDisplayShowHomeEnabled(false);   //disable back button
+        getActionBar().setHomeButtonEnabled(false);
+
         try {
             long currentTimeInMillis = System.currentTimeMillis();
 

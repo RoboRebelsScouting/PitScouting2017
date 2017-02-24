@@ -22,6 +22,9 @@ public class PhotoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
+
+        getActionBar().setDisplayShowHomeEnabled(false);   //disable back button
+        getActionBar().setHomeButtonEnabled(false);
     }
 
     public void backToSecond(View view) {
