@@ -51,11 +51,14 @@ public class InfoStorage {
     public int ballCapacity;
     public boolean tallFrame;
 
+    public boolean photoIsSent;
+
     public InfoStorage() {
         scout = "";
         team = 0;
         event = "";
         frame = null;
+        photoIsSent = false;
     }
 
     public File getAlbumStorageDir(String albumName) {
@@ -75,13 +78,29 @@ public class InfoStorage {
     public void csvCreate(Activity theActivity) {
         String fileName= this.event + "-" + this.team + "-" + this.scout + "-pit.csv";
 
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "MyCameraApp");
+
         File directory = getAlbumStorageDir("/FRC2017");
         File file = new File(directory,fileName);
-        try {
+        File photo = new File(mediaStorageDir.getPath() + File.separator +
+                "Bot_" + Main.infoStorage.team + ".jpg");
+            try {
+            if(photo.exists()) {
+                System.out.println("photo file name is: " + Uri.fromFile(photo));
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photo));
+                theActivity.startActivityForResult(intent, 0);
+            } else {
+                photoIsSent = true;
+            }
+
             FileWriter writer = new FileWriter(file);
             writer.write(this.event + "," + this.team + "," + this.scout + "," + this.ballCapacity + ","
                     + this.tallFrame + "," + this.shooting.toString() + "," + this.gear.toString()
-                    + "," + this.ball.toString() + "," + this.ropeMaterial + "," + this.frame.toString() + this.climb);
+                    + "," + this.ball.toString() + "," + this.ropeMaterial + "," + this.frame.toString() + "," + this.climb);
             writer.close();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);

@@ -21,9 +21,6 @@ public class FirstActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
         TextView eventNameText = (TextView) findViewById(R.id.eventName);
 
-        getActionBar().setDisplayShowHomeEnabled(false);   //disable back button
-        getActionBar().setHomeButtonEnabled(false);
-
         try {
             long currentTimeInMillis = System.currentTimeMillis();
 
@@ -51,12 +48,13 @@ public class FirstActivity extends AppCompatActivity {
         TextView event = (TextView) findViewById(R.id.eventName);
         EditText scout = (EditText) findViewById(R.id.scoutName);
         EditText team = (EditText) findViewById(R.id.teamNumber);
-        if (event.getText().toString().equals("") || scout.getText().toString().equals("") || Integer.parseInt(team.getText().toString()) == 0) {
+        if (event.getText().toString().equals("") || scout.getText().toString().equals("") || team.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Type all fields in", Toast.LENGTH_LONG).show();
         } else {
             Main.infoStorage.setHeader(event.getText().toString(), scout.getText().toString(), Integer.parseInt(team.getText().toString()));
             Intent intent = new Intent(this, SecondActivity.class);
             startActivity(intent);
+
         }
     }
 }

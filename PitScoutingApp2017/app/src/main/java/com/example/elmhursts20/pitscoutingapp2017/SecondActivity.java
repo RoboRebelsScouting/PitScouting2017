@@ -19,9 +19,6 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
-        getActionBar().setDisplayShowHomeEnabled(false);   //disable back button
-        getActionBar().setHomeButtonEnabled(false);
     }
     public void toPhoto(View view) {
         Intent intent = new Intent(this, PhotoActivity.class);
@@ -89,7 +86,11 @@ public class SecondActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Intent intent = new Intent(this, FirstActivity.class);
-        startActivity(intent);
+        if (Main.infoStorage.photoIsSent) {
+            Intent intent = new Intent(this, FirstActivity.class);
+            startActivity(intent);
+        } else {
+            Main.infoStorage.photoIsSent = true;
+        }
     }
 }
