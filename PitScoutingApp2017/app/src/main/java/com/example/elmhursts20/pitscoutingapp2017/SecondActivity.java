@@ -25,6 +25,7 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void submit(View view) {
+        EditText robotWeight = (EditText) findViewById(R.id.robotWeight);
         EditText ballCap = (EditText) findViewById(R.id.ballCapacity);
         EditText ropeMaterial = (EditText) findViewById(R.id.rope);
         ToggleButton footprint = (ToggleButton) findViewById(R.id.footPrint);
@@ -38,12 +39,16 @@ public class SecondActivity extends AppCompatActivity {
         ToggleButton ballGround = (ToggleButton) findViewById(R.id.groundBall);
         ToggleButton canClimb = (ToggleButton) findViewById(R.id.canClimb);
 
-        if (ballCap.getText().toString().equals("")) {
+        if (robotWeight.getText().toString().equals("")) {
+            Toast.makeText(getApplicationContext(), "Type in the robot weight", Toast.LENGTH_LONG).show();
+        } else if (ballCap.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Type in the ball capacity", Toast.LENGTH_LONG).show();
         } else if (ropeMaterial.getText().toString().equals("")) {
             ropeMaterial.setText("Default");
         } else {
 
+            Main.infoStorage.robotWeight = Integer.parseInt(robotWeight.getText().toString());
+            Main.infoStorage.ropeMaterial = ropeMaterial.getText().toString();
             Main.infoStorage.ballCapacity = Integer.parseInt(ballCap.getText().toString());
             Main.infoStorage.tallFrame = footprint.isChecked();
             Main.infoStorage.climb = canClimb.isChecked();

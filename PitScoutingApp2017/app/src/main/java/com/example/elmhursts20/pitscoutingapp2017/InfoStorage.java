@@ -16,6 +16,7 @@ import java.io.IOException;
 
 public class InfoStorage {
     public enum Frame {
+        kitbot,
         steel,
         wood,
         aluminum
@@ -48,6 +49,7 @@ public class InfoStorage {
     public Ball ball;
     public Gear gear;
     public String ropeMaterial;
+    public int robotWeight;
     public int ballCapacity;
     public boolean tallFrame;
 
@@ -100,7 +102,8 @@ public class InfoStorage {
             FileWriter writer = new FileWriter(file);
             writer.write(this.event + "," + this.team + "," + this.scout + "," + this.ballCapacity + ","
                     + this.tallFrame + "," + this.shooting.toString() + "," + this.gear.toString()
-                    + "," + this.ball.toString() + "," + this.ropeMaterial + "," + this.frame.toString() + "," + this.climb);
+                    + "," + this.ball.toString() + "," + this.ropeMaterial + "," + this.frame.toString() +
+                    "," + this.climb + "," + this.robotWeight);
             writer.close();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);
