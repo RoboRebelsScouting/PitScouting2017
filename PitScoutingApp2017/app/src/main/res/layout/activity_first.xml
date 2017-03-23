@@ -12,55 +12,50 @@
 
     <TextView
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="Version 1.9"
+        android:layout_height="75dp"
+        android:text="Version 2.1"
         android:textAlignment="center"
         android:textSize="30sp"
         android:layout_row="0"
         android:layout_column="2" />
+
     <TextView
         android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Scout:"
-        android:textSize="30sp"
-        android:layout_row="0"
-        android:layout_column="0" />
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:text="Event:"
         android:textSize="30sp"
         android:layout_row="1"
-        android:layout_column="0" />
+        android:layout_column="0"
+        android:textColor="@android:color/background_dark" />
     <TextView
         android:layout_width="100dp"
-        android:layout_height="50dp"
         android:text="Team:"
         android:textSize="30sp"
         android:layout_row="2"
-        android:layout_column="0" />
+        android:layout_column="0"
+        android:textColor="@android:color/background_dark"
+        android:layout_height="75dp" />
 
     <EditText
         android:id="@+id/scoutName"
         android:inputType="textPersonName"
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:hint="Name"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:layout_row="0"
         android:layout_column="1" />
 
-    <EditText
-        android:id="@+id/teamNumber"
-        android:inputType="number"
-        android:hint="Number"
-        android:maxLength="4"
+    <TextView
+        android:id="@+id/eventName"
         android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:textSize="20sp"
-        android:layout_row="2"
-        android:layout_column="1" />
+        android:text="Test"
+        android:layout_height="75dp"
+        android:textSize="30sp"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:textColor="@android:color/background_dark" />
 
     <Button
         android:id="@+id/nextButton"
@@ -69,16 +64,27 @@
         android:layout_height="60dp"
         android:textSize="30sp"
         android:layout_row="3"
-        android:layout_column="1"
+        android:layout_column="2"
         android:onClick="nextButton"/>
 
-    <TextView
-        android:id="@+id/eventName"
+    <EditText
+        android:id="@+id/teamNumber"
+        android:inputType="number"
+        android:hint="Number"
+        android:maxLength="4"
         android:layout_width="120dp"
-        android:text="Test"
-        android:layout_height="50dp"
-        android:textSize="20sp"
-        android:layout_row="1"
-        android:layout_column="1" />
+        android:textSize="30sp"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:layout_height="75dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Scout:"
+        android:textSize="30sp"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:textColor="@android:color/background_dark" />
 </GridLayout>
 

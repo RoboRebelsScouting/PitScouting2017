@@ -14,20 +14,20 @@
         android:text="Back"
         android:textAllCaps="false"
         android:onClick="backToSecond"
-        android:layout_width="500dp"
         android:layout_height="200dp"
         android:textSize="100sp"
         android:layout_row="1"
-        android:layout_column="0"/>
+        android:layout_column="0"
+        android:layout_width="575dp" />
     <Button
         android:id="@+id/finishButton"
         android:text="Photo"
         android:textAllCaps="false"
         android:onClick="photo"
-        android:layout_width="500dp"
         android:layout_height="200dp"
         android:textSize="100sp"
         android:layout_row="0"
-        android:layout_column="0"/>
+        android:layout_column="0"
+        android:layout_width="575dp" />
 </GridLayout>
 

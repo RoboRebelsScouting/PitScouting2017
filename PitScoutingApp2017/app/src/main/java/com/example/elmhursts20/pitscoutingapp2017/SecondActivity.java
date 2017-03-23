@@ -11,7 +11,11 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import static android.R.attr.data;
+import static com.example.elmhursts20.pitscoutingapp2017.InfoStorage.Rope.first;
 import static com.example.elmhursts20.pitscoutingapp2017.Main.infoStorage;
+import static com.example.elmhursts20.pitscoutingapp2017.R.id.email;
+import static com.example.elmhursts20.pitscoutingapp2017.R.id.nylon;
+import static com.example.elmhursts20.pitscoutingapp2017.R.id.velcro;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -27,15 +31,20 @@ public class SecondActivity extends AppCompatActivity {
     public void submit(View view) {
         EditText robotWeight = (EditText) findViewById(R.id.robotWeight);
         EditText ballCap = (EditText) findViewById(R.id.ballCapacity);
-        EditText ropeMaterial = (EditText) findViewById(R.id.rope);
+        EditText enterEmail = (EditText) findViewById(R.id.enterEmail);
+        RadioButton nylon = (RadioButton) findViewById(R.id.nylon);
+        RadioButton paracord = (RadioButton) findViewById(R.id.paracord);
+        RadioButton first = (RadioButton) findViewById(R.id.first);
+        RadioButton velcro = (RadioButton) findViewById(R.id.velcro);
         ToggleButton footprint = (ToggleButton) findViewById(R.id.footPrint);
         ToggleButton shootLow = (ToggleButton) findViewById(R.id.shootLow);
         ToggleButton shootHigh = (ToggleButton) findViewById(R.id.shootHigh);
         RadioButton frameSteel = (RadioButton) findViewById(R.id.steel);
         RadioButton frameAluminum = (RadioButton) findViewById(R.id.aluminum);
+        RadioButton frameKitbot = (RadioButton) findViewById(R.id.kitbot);
         ToggleButton gearPlayer = (ToggleButton) findViewById(R.id.playerGear);
         ToggleButton gearGround = (ToggleButton) findViewById(R.id.groundGear);
-        ToggleButton ballPlayer = (ToggleButton) findViewById(R.id.playerBall);
+        ToggleButton ballHopper = (ToggleButton) findViewById(R.id.hopperBall);
         ToggleButton ballGround = (ToggleButton) findViewById(R.id.groundBall);
         ToggleButton canClimb = (ToggleButton) findViewById(R.id.canClimb);
 
@@ -43,12 +52,10 @@ public class SecondActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Type in the robot weight", Toast.LENGTH_LONG).show();
         } else if (ballCap.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Type in the ball capacity", Toast.LENGTH_LONG).show();
-        } else if (ropeMaterial.getText().toString().equals("")) {
-            ropeMaterial.setText("Default");
         } else {
 
             Main.infoStorage.robotWeight = Integer.parseInt(robotWeight.getText().toString());
-            Main.infoStorage.ropeMaterial = ropeMaterial.getText().toString();
+            Main.infoStorage.email = (enterEmail.getText().toString());
             Main.infoStorage.ballCapacity = Integer.parseInt(ballCap.getText().toString());
             Main.infoStorage.tallFrame = footprint.isChecked();
             Main.infoStorage.climb = canClimb.isChecked();
@@ -65,13 +72,24 @@ public class SecondActivity extends AppCompatActivity {
                 Main.infoStorage.frame = InfoStorage.Frame.steel;
             } else if (frameAluminum.isChecked()) {
                 Main.infoStorage.frame = InfoStorage.Frame.aluminum;
+            } else if (frameKitbot.isChecked()) {
+                Main.infoStorage.frame = InfoStorage.Frame.kitbot;
             } else {
                 Main.infoStorage.frame = InfoStorage.Frame.wood;
             }
-            if (ballPlayer.isChecked() && ballGround.isChecked()) {
+            if (velcro.isChecked()) {
+                Main.infoStorage.ropeMaterial = InfoStorage.Rope.velcro;
+            } else if (nylon.isChecked()) {
+                Main.infoStorage.ropeMaterial = InfoStorage.Rope.nylon;
+            } else if (paracord.isChecked()) {
+                Main.infoStorage.ropeMaterial = InfoStorage.Rope.paracord;
+            } else {
+                Main.infoStorage.ropeMaterial = InfoStorage.Rope.first;
+            }
+            if (ballHopper.isChecked() && ballGround.isChecked()) {
                 Main.infoStorage.ball = InfoStorage.Ball.both;
-            } else if (ballPlayer.isChecked()) {
-                Main.infoStorage.ball = InfoStorage.Ball.player;
+            } else if (ballHopper.isChecked()) {
+                Main.infoStorage.ball = InfoStorage.Ball.hopper;
             } else if (ballGround.isChecked()) {
                 Main.infoStorage.ball = InfoStorage.Ball.ground;
             } else {

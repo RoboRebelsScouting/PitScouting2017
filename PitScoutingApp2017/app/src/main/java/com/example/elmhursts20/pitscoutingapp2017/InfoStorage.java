@@ -21,6 +21,12 @@ public class InfoStorage {
         wood,
         aluminum
     }
+    public enum Rope {
+        velcro,
+        nylon,
+        paracord,
+        first
+    }
     public enum Shooting {
         high,
         low,
@@ -29,7 +35,7 @@ public class InfoStorage {
     }
     public enum Ball {
         ground,
-        player,
+        hopper,
         neither,
         both
     }
@@ -40,7 +46,7 @@ public class InfoStorage {
         both
     }
 
-    private String scout;
+    public String scout;
     public int team;
     private String event;
     public boolean climb;
@@ -48,10 +54,11 @@ public class InfoStorage {
     public Shooting shooting;
     public Ball ball;
     public Gear gear;
-    public String ropeMaterial;
+    public Rope ropeMaterial;
     public int robotWeight;
     public int ballCapacity;
     public boolean tallFrame;
+    public String email;
 
     public boolean photoIsSent;
 
@@ -61,6 +68,7 @@ public class InfoStorage {
         event = "";
         frame = null;
         photoIsSent = false;
+        email = "";
     }
 
     public File getAlbumStorageDir(String albumName) {
@@ -103,7 +111,7 @@ public class InfoStorage {
             writer.write(this.event + "," + this.team + "," + this.scout + "," + this.ballCapacity + ","
                     + this.tallFrame + "," + this.shooting.toString() + "," + this.gear.toString()
                     + "," + this.ball.toString() + "," + this.ropeMaterial + "," + this.frame.toString() +
-                    "," + this.climb + "," + this.robotWeight);
+                    "," + this.climb + "," + this.robotWeight + "," + this.email);
             writer.close();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);

@@ -16,24 +16,28 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-
-        Main.infoStorage = new InfoStorage();
+        if (Main.infoStorage == null) {
+            Main.infoStorage = new InfoStorage();
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
         TextView eventNameText = (TextView) findViewById(R.id.eventName);
-
+        EditText scoutName = (EditText) findViewById(R.id.scoutName);
+        if (!Main.infoStorage.scout.equals("")) {
+            scoutName.setText(Main.infoStorage.scout);
+        }
         try {
             long currentTimeInMillis = System.currentTimeMillis();
 
             if ((currentTimeInMillis >= sdf.parse("Feb 17 2017").getTime()) &&
                     (currentTimeInMillis < sdf.parse("Feb 19 2017").getTime() )) {
                 eventNameText.setText("Week_0");
-            } else if ((currentTimeInMillis >= sdf.parse("Mar 8 2017").getTime()) &&
+            } else if ((currentTimeInMillis >= sdf.parse("Feb 19 2017").getTime()) &&
                     (currentTimeInMillis < sdf.parse("Mar 12 2017").getTime() )) {
                 eventNameText.setText("WPI");
-            } else if ((currentTimeInMillis >= sdf.parse("Mar 23 2017").getTime()) &&
+            } else if ((currentTimeInMillis >= sdf.parse("Mar 12 2017").getTime()) &&
                     (currentTimeInMillis < sdf.parse("Mar 27 2017").getTime() )) {
                 eventNameText.setText("Bryant");
-            } else if ((currentTimeInMillis >= sdf.parse("Apr 4 2017").getTime()) &&
+            } else if ((currentTimeInMillis >= sdf.parse("Mar 27 2017").getTime()) &&
                     (currentTimeInMillis < sdf.parse("Apr 9 2017").getTime() )) {
                 eventNameText.setText("NE_Champs");
             }  else {
