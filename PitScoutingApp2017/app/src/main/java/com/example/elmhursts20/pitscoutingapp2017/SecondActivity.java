@@ -10,13 +10,6 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import static android.R.attr.data;
-import static com.example.elmhursts20.pitscoutingapp2017.InfoStorage.Rope.first;
-import static com.example.elmhursts20.pitscoutingapp2017.Main.infoStorage;
-import static com.example.elmhursts20.pitscoutingapp2017.R.id.email;
-import static com.example.elmhursts20.pitscoutingapp2017.R.id.nylon;
-import static com.example.elmhursts20.pitscoutingapp2017.R.id.velcro;
-
 public class SecondActivity extends AppCompatActivity {
 
     @Override
@@ -47,6 +40,10 @@ public class SecondActivity extends AppCompatActivity {
         ToggleButton ballHopper = (ToggleButton) findViewById(R.id.hopperBall);
         ToggleButton ballGround = (ToggleButton) findViewById(R.id.groundBall);
         ToggleButton canClimb = (ToggleButton) findViewById(R.id.canClimb);
+
+        if (enterEmail.getText().toString().equals("")){
+            Main.infoStorage.email = "null";
+        }
 
         if (robotWeight.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Type in the robot weight", Toast.LENGTH_LONG).show();
@@ -83,7 +80,7 @@ public class SecondActivity extends AppCompatActivity {
                 Main.infoStorage.ropeMaterial = InfoStorage.Rope.nylon;
             } else if (paracord.isChecked()) {
                 Main.infoStorage.ropeMaterial = InfoStorage.Rope.paracord;
-            } else {
+            } else if (first.isChecked()){
                 Main.infoStorage.ropeMaterial = InfoStorage.Rope.first;
             }
             if (ballHopper.isChecked() && ballGround.isChecked()) {
