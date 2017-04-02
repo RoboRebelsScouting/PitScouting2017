@@ -43,6 +43,8 @@ public class SecondActivity extends AppCompatActivity {
 
         if (enterEmail.getText().toString().equals("")){
             Main.infoStorage.email = "null";
+        } else {
+            Main.infoStorage.email = (enterEmail.getText().toString());
         }
 
         if (robotWeight.getText().toString().equals("")) {
@@ -52,7 +54,6 @@ public class SecondActivity extends AppCompatActivity {
         } else {
 
             Main.infoStorage.robotWeight = Integer.parseInt(robotWeight.getText().toString());
-            Main.infoStorage.email = (enterEmail.getText().toString());
             Main.infoStorage.ballCapacity = Integer.parseInt(ballCap.getText().toString());
             Main.infoStorage.tallFrame = footprint.isChecked();
             Main.infoStorage.climb = canClimb.isChecked();
