@@ -85,7 +85,7 @@ public class InfoStorage {
         this.team = team;
     }
 
-    public void csvCreate(Activity theActivity) {
+    public void csvCreate(Activity theActivity, Boolean saveFileOnly) {
         String fileName= this.event + "-" + this.team + "-" + this.scout + "-pit.csv";
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
@@ -113,13 +113,15 @@ public class InfoStorage {
                     + "," + this.ball.toString() + "," + this.ropeMaterial + "," + this.frame.toString() +
                     "," + this.climb + "," + this.robotWeight + "," + this.email);
             writer.close();
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
-            theActivity.startActivityForResult(intent,0);
+            if (saveFileOnly == false) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+                theActivity.startActivityForResult(intent, 0);
+            }
         } catch (IOException e) {
-            Log.e("ERROR","File NOT Created",e);
+            Log.e("ERROR", "File NOT Created", e);
         }
     }
 }

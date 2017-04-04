@@ -11,6 +11,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class SecondActivity extends AppCompatActivity {
+    public boolean saveFileOnly = false;
+    public boolean useBluetoothActivity = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,9 +104,23 @@ public class SecondActivity extends AppCompatActivity {
             } else {
                 Main.infoStorage.gear = InfoStorage.Gear.neither;
             }
-            Main.infoStorage.csvCreate(this);
+            Main.infoStorage.csvCreate(this, saveFileOnly);
+            if (saveFileOnly == true){
+                startFirstActivity();
+            }
         }
     }
+
+    public void saveFile (View view) {
+        saveFileOnly = true;
+        this.submit(view);
+    }
+
+    public void sendFile (View view) {
+        saveFileOnly = false;
+        this.submit(view);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (Main.infoStorage.photoIsSent) {
@@ -113,5 +129,9 @@ public class SecondActivity extends AppCompatActivity {
         } else {
             Main.infoStorage.photoIsSent = true;
         }
+    }
+    public void startFirstActivity() {
+        Intent intent = new Intent(this, FirstActivity.class) ;
+        startActivity(intent);
     }
 }
